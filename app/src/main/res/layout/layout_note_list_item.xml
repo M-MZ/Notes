@@ -37,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="20"
         android:textSize="17sp"
-        android:lines="1"
         android:text="Dec 2019"
         android:padding="10dp"
         />
