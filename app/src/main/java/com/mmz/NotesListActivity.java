@@ -17,19 +17,20 @@ public class NotesListActivity extends AppCompatActivity {
 
     private static final String TAG = "NotesListActivity";
 
-    //UI components
+    // ui components
     private RecyclerView mRecyclerView;
 
-    //vars
+    // vars
     private ArrayList<Note> mNotes = new ArrayList<>();
-    private NotesRecyclerAdapter mNotesRecyclerAdapter;
+    private NotesRecyclerAdapter mNoteRecyclerAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
-        mRecyclerView.findViewById(R.id.recyclerview);
+        mRecyclerView = findViewById(R.id.recyclerView);
+
 
         initRecyclerView();
         insertFakeNotes();
@@ -44,7 +45,7 @@ public class NotesListActivity extends AppCompatActivity {
             mNotes.add(note);
         }
         //Must have this to update adapter
-        mNotesRecyclerAdapter.notifyDataSetChanged();
+        mNoteRecyclerAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView(){
@@ -52,8 +53,8 @@ public class NotesListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
         mRecyclerView.addItemDecoration(itemDecorator);
-        mNotesRecyclerAdapter = new NotesRecyclerAdapter(mNotes);
-        mRecyclerView.setAdapter(mNotesRecyclerAdapter);
+        mNoteRecyclerAdapter = new NotesRecyclerAdapter(mNotes);
+        mRecyclerView.setAdapter(mNoteRecyclerAdapter);
     }
 
 }
