@@ -3,19 +3,24 @@ package com.mmz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mmz.adapters.NotesRecyclerAdapter;
 import com.mmz.models.Note;
 import com.mmz.utils.VerticalSpacingItemDecorator;
 
 import java.util.ArrayList;
 
-public class NotesListActivity extends AppCompatActivity implements NotesRecyclerAdapter.OnNoteListener {
+public class NotesListActivity extends AppCompatActivity implements
+        NotesRecyclerAdapter.OnNoteListener,
+        FloatingActionButton.OnClickListener
+{
 
     private static final String TAG = "NotesListActivity";
 
@@ -33,6 +38,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesRecycle
         setContentView(R.layout.activity_notes_list);
         mRecyclerView = findViewById(R.id.recyclerView);
 
+        findViewById(R.id.fab).setOnClickListener(this);
 
         initRecyclerView();
         insertFakeNotes();
@@ -73,5 +79,11 @@ public class NotesListActivity extends AppCompatActivity implements NotesRecycle
         startActivity(intent);
 
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(this, NoteActivity.class);
+        startActivity(intent);
     }
 }
