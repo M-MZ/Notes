@@ -37,7 +37,7 @@
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:src="@drawable/ic_check_black_24dp"
             android:background="?attr/selectableItemBackground"
             android:id="@+id/toolbar_check"
             android:layout_centerInParent="true" >
@@ -64,7 +64,8 @@
         android:layout_weight="85"
         android:id="@+id/note_edit_title"
         android:text="title of the note"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:background="@color/white"
         android:layout_marginStart="15dp"
         android:textSize="23sp"
         android:visibility="gone"
