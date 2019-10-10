@@ -1,6 +1,8 @@
 package com.mmz;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,7 +15,7 @@ import com.mmz.utils.VerticalSpacingItemDecorator;
 
 import java.util.ArrayList;
 
-public class NotesListActivity extends AppCompatActivity {
+public class NotesListActivity extends AppCompatActivity implements NotesRecyclerAdapter.OnNoteListener {
 
     private static final String TAG = "NotesListActivity";
 
@@ -58,8 +60,18 @@ public class NotesListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
         mRecyclerView.addItemDecoration(itemDecorator);
-        mNoteRecyclerAdapter = new NotesRecyclerAdapter(mNotes);
+        mNoteRecyclerAdapter = new NotesRecyclerAdapter(mNotes, this);
         mRecyclerView.setAdapter(mNoteRecyclerAdapter);
     }
 
+    @Override
+    public void onNoteClick(int position) {
+        Log.d(TAG, "onNoteClick: clicked." + position);
+
+        Intent intent = new Intent(this, NoteActivity.class);
+        intent.putExtra("selected_note", mNotes.get(position));
+        startActivity(intent);
+
+
+    }
 }
