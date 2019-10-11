@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import com.mmz.async.InsertAsyncTask;
 import com.mmz.models.Note;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class NoteRepository {
     }
 
     public void insertNoteTask(Note note){
-
+        new InsertAsyncTask(mNoteDatabase.getNotesDao()).execute(note);
     }
 
     public void updateNote(Note note){
