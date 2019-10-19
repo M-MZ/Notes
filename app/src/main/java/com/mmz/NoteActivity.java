@@ -115,6 +115,7 @@ public class NoteActivity extends AppCompatActivity implements
     }
 
     private void enableEditMode(){
+        mEditContainer.setVisibility(View.GONE);
         mBackArrowContainer.setVisibility(View.GONE);
         mCheckContainer.setVisibility(View.VISIBLE);
 
@@ -127,6 +128,7 @@ public class NoteActivity extends AppCompatActivity implements
     }
 
     private void disableEditMode(){
+        mEditContainer.setVisibility(View.VISIBLE);
         mBackArrowContainer.setVisibility(View.VISIBLE);
         mCheckContainer.setVisibility(View.GONE);
 
