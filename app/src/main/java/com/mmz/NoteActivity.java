@@ -36,8 +36,8 @@ public class NoteActivity extends AppCompatActivity implements
     private LineEditText mLineEditText;
     private EditText mEditTitle;
     private TextView mViewTitle;
-    private RelativeLayout mCheckContainer, mBackArrowContainer;
-    private ImageButton mCheck, mBackArrow;
+    private RelativeLayout mCheckContainer, mBackArrowContainer, mEditContainer;
+    private ImageButton mCheck, mBackArrow, mEdit;
     private NoteRepository mNoteRepository;
 
 
@@ -57,8 +57,10 @@ public class NoteActivity extends AppCompatActivity implements
         mViewTitle = findViewById(R.id.note_text_title);
         mCheckContainer = findViewById(R.id.check_container);
         mBackArrowContainer = findViewById(R.id.back_arrow_container);
+        mEditContainer = findViewById(R.id.edit_container);
         mCheck = findViewById(R.id.toolbar_check);
         mBackArrow = findViewById(R.id.toolbar_back_arrow);
+        mEdit = findViewById(R.id.toolbar_edit);
 
         mNoteRepository = new NoteRepository(this);
 
@@ -169,6 +171,7 @@ public class NoteActivity extends AppCompatActivity implements
         mViewTitle.setOnClickListener(this);
         mCheck.setOnClickListener(this);
         mBackArrow.setOnClickListener(this);
+        mEdit.setOnClickListener(this);
         mEditTitle.addTextChangedListener(this);
     }
 
@@ -262,7 +265,8 @@ public class NoteActivity extends AppCompatActivity implements
                 disableEditMode();
                 break;
             }
-            case R.id.note_text_title:{
+            case R.id.note_text_title:
+            case R.id.toolbar_edit: {
                 enableEditMode();
 
                 //get cursor and take it to the end of text

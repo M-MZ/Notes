@@ -50,26 +50,48 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="85"
+        android:layout_weight="80"
         android:id="@+id/note_text_title"
         android:text="title of the note"
         android:textColor="@color/black"
         android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:textSize="23sp"
         android:visibility="visible" />
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="85"
+        android:layout_weight="80"
         android:id="@+id/note_edit_title"
         android:text="title of the note"
         android:textColor="@color/black"
         android:background="@color/white"
         android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:textSize="23sp"
         android:visibility="gone"
         android:padding="2dp"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/edit_container"
+        android:visibility="visible">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/toolbar_edit"
+            android:layout_centerInParent="true" >
+
+        </ImageButton>
+
+    </RelativeLayout>
 
 
 
