@@ -183,6 +183,7 @@ public class NoteActivity extends AppCompatActivity implements
         mEditTitle.setText("Note Title");
 
         mInitialNote = new Note();
+        mFinalNote = new Note();
         mInitialNote.setTitle("Note Title");
     }
 
