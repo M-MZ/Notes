@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mmz.models.Note;
 import com.mmz.persistence.NoteRepository;
+import com.mmz.utils.Utility;
 
 public class NoteActivity extends AppCompatActivity implements
         View.OnTouchListener,
@@ -132,7 +133,7 @@ public class NoteActivity extends AppCompatActivity implements
         if(temp.length() > 0){
             mFinalNote.setTitle(mEditTitle.getText().toString());
             mFinalNote.setContent(mLineEditText.getText().toString());
-            String timestamp = "Oct 2019";
+            String timestamp = Utility.getCurrentTimeStamp();
             mFinalNote.setTimestamp(timestamp);
 
             if (!mFinalNote.getContent().equals(mInitialNote.getContent())
