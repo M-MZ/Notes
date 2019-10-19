@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -46,8 +47,8 @@ public class NotesListActivity extends AppCompatActivity implements
 
         findViewById(R.id.fab).setOnClickListener(this);
 
-        mNoteRepository = new NoteRepository(this);
         initRecyclerView();
+        mNoteRepository = new NoteRepository(this);
         retrieveNotes();
 //        insertFakeNotes();
 
@@ -58,10 +59,10 @@ public class NotesListActivity extends AppCompatActivity implements
     }
 
     //attach observer to live data
-    private void retrieveNotes(){
+    private void retrieveNotes() {
         mNoteRepository.retrieveNotesTask().observe(this, new Observer<List<Note>>() {
             @Override
-            public void onChanged(List<Note> notes) {
+            public void onChanged(@Nullable List<Note> notes) {
                 if(mNotes.size() > 0){
                     mNotes.clear();
                 }
@@ -101,6 +102,7 @@ public class NotesListActivity extends AppCompatActivity implements
 
         Intent intent = new Intent(this, NoteActivity.class);
         intent.putExtra("selected_note", mNotes.get(position));
+        Log.d(TAG, "onNoteClick: Note: " + mNotes.get(position).toString());
         startActivity(intent);
 
 

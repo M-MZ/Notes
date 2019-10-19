@@ -13,6 +13,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "notes")
 public class Note implements Parcelable {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -33,7 +34,9 @@ public class Note implements Parcelable {
 
     @Ignore
     public Note() {
+
     }
+
 
     protected Note(Parcel in) {
         id = in.readInt();
@@ -86,6 +89,15 @@ public class Note implements Parcelable {
         this.timestamp = timestamp;
     }
 
+    @Override
+    public String toString() {
+        return "Note{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
+    }
+
 
     @Override
     public int describeContents() {
@@ -93,17 +105,8 @@ public class Note implements Parcelable {
     }
 
     @Override
-    public String toString() {
-        return "Note{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                '}';
-    }
-
-    @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
         parcel.writeString(title);
         parcel.writeString(content);
         parcel.writeString(timestamp);

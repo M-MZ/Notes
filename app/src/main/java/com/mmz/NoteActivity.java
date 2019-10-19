@@ -64,26 +64,29 @@ public class NoteActivity extends AppCompatActivity implements
 
         setListeners();
 
-        if (getIncomingIntent()){
-            //this is a new note (EDIT MODE)
+        if(getIncomingIntent()){
             setNewNoteProperties();
             enableEditMode();
-
         }
-        else {
-            //not new note (VIEW MODE)
+        else{
             setNoteProperties();
             disableContentInteraction();
-
         }
     }
 
     private boolean getIncomingIntent(){
-        if (getIntent().hasExtra("selected_note")){
+        if(getIntent().hasExtra("selected_note")){
             mInitialNote = getIntent().getParcelableExtra("selected_note");
-            mFinalNote = getIntent().getParcelableExtra("selected_note");
-            Log.d(TAG, "getIncomingIntent: " + mInitialNote.toString());
-            mMode = EDIT_MODE_DISABLED;
+
+            mFinalNote = new Note();
+            mFinalNote.setTitle(mInitialNote.getTitle());
+            mFinalNote.setContent(mInitialNote.getContent());
+            mFinalNote.setTimestamp(mInitialNote.getTimestamp());
+            mFinalNote.setId(mInitialNote.getId());
+
+            Log.d(TAG, "getIncomingIntent: Initial: " + mInitialNote.toString());
+
+            mMode = EDIT_MODE_ENABLED;
             mIsNewNote = false;
             return false;
         }
@@ -97,8 +100,12 @@ public class NoteActivity extends AppCompatActivity implements
             saveNewNote();
         }
         else{
-
+            updateNote();
         }
+    }
+
+    private void updateNote(){
+        mNoteRepository.updateNote(mFinalNote);
     }
 
     private void saveNewNote(){
@@ -136,8 +143,12 @@ public class NoteActivity extends AppCompatActivity implements
             String timestamp = Utility.getCurrentTimeStamp();
             mFinalNote.setTimestamp(timestamp);
 
+            Log.d(TAG, "disableEditMode: initial: " + mInitialNote.toString());
+            Log.d(TAG, "disableEditMode: final: " + mFinalNote.toString());
+
             if (!mFinalNote.getContent().equals(mInitialNote.getContent())
                     || !mFinalNote.getTitle().equals(mInitialNote.getTitle())){
+                Log.d(TAG, "disableEditMode: called?");
                 saveChanges();
             }
         }
@@ -172,9 +183,7 @@ public class NoteActivity extends AppCompatActivity implements
         mEditTitle.setText("Note Title");
 
         mInitialNote = new Note();
-        mFinalNote = new Note();
         mInitialNote.setTitle("Note Title");
-        mFinalNote.setTitle("Note Title");
     }
 
     private void disableContentInteraction(){
@@ -250,7 +259,6 @@ public class NoteActivity extends AppCompatActivity implements
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.toolbar_check:{
-                hideSoftKeyboard();
                 disableEditMode();
                 break;
             }
