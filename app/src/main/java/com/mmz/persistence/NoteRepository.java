@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import com.mmz.async.DeleteAsyncTask;
 import com.mmz.async.InsertAsyncTask;
 import com.mmz.models.Note;
 
@@ -30,6 +31,6 @@ public class NoteRepository {
     }
 
     public void deleteNote(Note note){
-
+        new DeleteAsyncTask(mNoteDatabase.getNotesDao()).execute(note);
     }
 }

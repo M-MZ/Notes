@@ -115,6 +115,8 @@ public class NotesListActivity extends AppCompatActivity implements
     private void deleteNote(Note note){
         mNotes.remove(note);
         mNoteRecyclerAdapter.notifyDataSetChanged();
+
+        mNoteRepository.deleteNote(note);
     }
 
     //swipe left to delete a note
